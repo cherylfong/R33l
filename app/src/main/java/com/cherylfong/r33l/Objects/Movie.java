@@ -13,6 +13,8 @@ public class Movie {
     private String overview;
     private String releaseDate;
 
+    private static final String IMGSIZE = "w154";
+
     // handled in onCreate of MainActivity
     public Movie(JSONObject jsonObject) throws JSONException{
 
@@ -20,6 +22,23 @@ public class Movie {
         posterPath = jsonObject.getString("poster_path");
         overview = jsonObject.getString("overview");
         releaseDate = jsonObject.getString("release_date");
+    }
+
+    // getter methods
+    public String getTitle() {
+        return title;
+    }
+
+    public String getPosterPath() {
+        return "https://image.tmdb.org/t/p/"+ IMGSIZE + posterPath;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
     // to populate a list of movies
