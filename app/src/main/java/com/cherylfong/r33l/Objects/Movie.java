@@ -13,7 +13,7 @@ public class Movie {
     private String overview;
     private String releaseDate;
 
-    private static final String IMGSIZE = "w154";
+    private static final String IMGSIZE = "w185";
 
     // handled in onCreate of MainActivity
     public Movie(JSONObject jsonObject) throws JSONException{
