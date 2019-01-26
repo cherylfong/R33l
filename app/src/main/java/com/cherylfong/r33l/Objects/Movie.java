@@ -38,7 +38,7 @@ public class Movie {
     }
 
     public String getReleaseDate() {
-        return releaseDate;
+        return "Released: " + releaseDate;
     }
 
     // to populate a list of movies
