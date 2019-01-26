@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     private ArrayList<Movie> movieArrayList;
     private Context mContext;
 
+    private static final String LOG_TAG = MovieListAdapter.class.getSimpleName();
+
     /**
      * Constructor using the context and the db cursor
      * @param context the calling context/activity
@@ -36,6 +39,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
+        Log.d(LOG_TAG, "onCreateViewHolder called!");
+
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.movie_list_item, viewGroup, false );
         return new MovieViewHolder(view);
@@ -45,6 +50,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder movieViewHolder, int position) {
 
+        Log.d(LOG_TAG, "onBindViewHolder called: position " + position);
         Movie m = movieArrayList.get(position);
 
         // helper method to populate values into layout components
