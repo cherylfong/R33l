@@ -12,8 +12,10 @@ public class Movie {
     private String posterPath;
     private String overview;
     private String releaseDate;
+    private String backdropPath;
 
-    private static final String IMGSIZE = "w185";
+    private static final String POSTERSIZE = "w185";
+    private static final String BCKDROPSIZE = "w300";
 
     // handled in onCreate of MainActivity
     public Movie(JSONObject jsonObject) throws JSONException{
@@ -22,6 +24,7 @@ public class Movie {
         posterPath = jsonObject.getString("poster_path");
         overview = jsonObject.getString("overview");
         releaseDate = jsonObject.getString("release_date");
+        backdropPath = jsonObject.getString("backdrop_path");
     }
 
     // getter methods
@@ -30,7 +33,7 @@ public class Movie {
     }
 
     public String getPosterPath() {
-        return "https://image.tmdb.org/t/p/"+ IMGSIZE + posterPath;
+        return "https://image.tmdb.org/t/p/"+ POSTERSIZE + posterPath;
     }
 
     public String getOverview() {
@@ -39,6 +42,10 @@ public class Movie {
 
     public String getReleaseDate() {
         return "Released: " + releaseDate;
+    }
+
+    public String getBackdropPath() {
+        return "https://image.tmdb.org/t/p/"+ BCKDROPSIZE +backdropPath;
     }
 
     // to populate a list of movies
