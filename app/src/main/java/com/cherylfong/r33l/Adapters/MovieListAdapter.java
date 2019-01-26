@@ -1,6 +1,7 @@
 package com.cherylfong.r33l.Adapters;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -72,7 +73,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         TextView titleTV;
         TextView releaseDateTV;
         TextView overviewTV;
-        ImageView posterIV;
+        ImageView graphicIV;
+
 
 
         /**
@@ -89,7 +91,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             titleTV = itemView.findViewById(R.id.tile_textView);
             releaseDateTV = itemView.findViewById(R.id.releaseDate_textView);
             overviewTV = itemView.findViewById(R.id.overview_textView);
-            posterIV = itemView.findViewById(R.id.poster_imageView);
+            graphicIV = itemView.findViewById(R.id.movieGraphic_imageView);
 
         }
 
@@ -100,8 +102,14 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             releaseDateTV.setText(m.getReleaseDate());
             overviewTV.setText(m.getOverview());
 
+            String graphicURL = m.getPosterPath();
+
+            if( mContext.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                graphicURL = m.getBackdropPath();
+            }
+
             // loads the image from url to an ImageView
-            Glide.with(mContext).load(m.getPosterPath()).into(posterIV);
+            Glide.with(mContext).load(graphicURL).into(graphicIV);
         }
     }
 }
