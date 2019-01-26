@@ -1,14 +1,12 @@
 # R33l
 R33l i.e. "Reel" is an app that allows users to browse movies from the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
----
-
 ## Week 1
 
-#### Features
+### Features
 - [X] Users can view a list of movies currently playing in theaters from the Movie Database API.
 
-#### BONUS Features
+### Bonus Features
 - [X] Views are responsive for both landscape/portrait mode.
    - [X] Portrait mode: shows movie title, poster image, release date and overview.
    - [X] Landscape mode: uses backdrop image instead of poster image in addition to the title and movie overview.
