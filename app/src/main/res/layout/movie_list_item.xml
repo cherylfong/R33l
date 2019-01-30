@@ -28,11 +28,13 @@
         android:id="@+id/tile_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/movieGraphic_imageView"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/movieGraphic_imageView"
+        android:fontFamily="@font/allerta"
+        android:text="@string/dummy_title"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:text="@string/dummy_title"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/overview_textView"
@@ -40,7 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/releaseDate_textView"
         android:layout_toRightOf="@id/movieGraphic_imageView"
-        android:text="@string/dummy_overview"/>
+        android:fontFamily="@font/roboto"
+        android:text="@string/dummy_overview"
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/releaseDate_textView"
@@ -48,7 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tile_textView"
         android:layout_toRightOf="@id/movieGraphic_imageView"
-        android:text="@string/dummy_date"/>
+        android:fontFamily="monospace"
+        android:text="@string/dummy_date"
+        android:textColor="@android:color/white" />
 
 
 
