@@ -44,7 +44,8 @@
         android:layout_toRightOf="@id/movieGraphic_imageView"
         android:fontFamily="@font/roboto"
         android:text="@string/dummy_overview"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/releaseDate_textView"
