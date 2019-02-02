@@ -1,10 +1,12 @@
 package com.cherylfong.r33l;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.LinearLayout;
 
 import com.cherylfong.r33l.Adapters.MovieListAdapter;
 import com.cherylfong.r33l.Objects.Movie;
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private MovieListAdapter mAdapter;
 
     ArrayList<Movie> moviesNowPlaying;
+
+    LinearLayout linearLayout;
+    AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,5 +82,13 @@ public class MainActivity extends AppCompatActivity {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
             }
         });
+
+        // to animate title animation
+        linearLayout = findViewById(R.id.r33l_title_animate_layout);
+        animationDrawable = (AnimationDrawable) linearLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(5000);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
+
     }
 }
