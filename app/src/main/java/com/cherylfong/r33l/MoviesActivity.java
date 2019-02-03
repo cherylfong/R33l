@@ -20,9 +20,9 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-public class MainActivity extends AppCompatActivity {
+public class MoviesActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = MoviesActivity.class.getSimpleName();
 
     private static final String API_KEY = "api_key=3cb75c31ee53a94adb2a217c345c85b6";
     // private static final String API_KEY = "api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"; //test key

@@ -17,8 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -139,6 +141,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         TextView overviewTV;
         ImageView graphicIV;
         ProgressBar progressBar;
+        RelativeLayout relativeLayout;
 
         /**
          * Constructor for ViewHolder. Within this constructor, get a reference to
@@ -156,10 +159,11 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             overviewTV = itemView.findViewById(R.id.overview_textView);
             graphicIV = itemView.findViewById(R.id.movieGraphic_imageView);
             progressBar = itemView.findViewById(R.id.progressBar);
+            relativeLayout = itemView.findViewById(R.id.movie_list_item_container);
         }
 
         // binds the values to the corresponding layout components
-        public void bindValues(Movie m) {
+        public void bindValues(final Movie m) {
 
             progressBar.setVisibility(View.VISIBLE);
             graphicIV.setVisibility(View.INVISIBLE);
@@ -211,6 +215,12 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                     .into(graphicIV);
 
 
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext,m.getTitle(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

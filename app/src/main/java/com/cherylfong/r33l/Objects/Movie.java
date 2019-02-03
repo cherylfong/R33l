@@ -21,7 +21,7 @@ public class Movie {
     private static final String POSTER_LAND = "w185"; // landscape ... perhaps use "w92" for portrait
     private static final String BCKDROPSIZE = "original";
 
-    // handled in onCreate of MainActivity
+    // handled in onCreate of MoviesActivity
     public Movie(JSONObject jsonObject) throws JSONException{
 
         voteAverage = jsonObject.getDouble("vote_average");
