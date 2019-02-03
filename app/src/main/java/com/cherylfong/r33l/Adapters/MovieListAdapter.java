@@ -1,6 +1,7 @@
 package com.cherylfong.r33l.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -34,6 +35,8 @@ import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.cherylfong.r33l.MovieDetailsActivity;
+import com.cherylfong.r33l.MoviesActivity;
 import com.cherylfong.r33l.Objects.Movie;
 import com.cherylfong.r33l.R;
 
@@ -219,6 +222,16 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(mContext,m.getTitle(), Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(mContext, MovieDetailsActivity.class);
+
+                    intent.putExtra("title", m.getTitle());
+                    intent.putExtra("overview", m.getOverview());
+                    intent.putExtra("voteAvg", m.getVoteAverage());
+                    intent.putExtra("releaseDate", m.getReleaseDate());
+
+                    mContext.startActivity(intent);
+
                 }
             });
         }
