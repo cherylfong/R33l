@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Movie {
 
     private double voteAverage;
+    private int id;
     private String title;
     private String posterPath;
     private String overview;
@@ -27,6 +28,7 @@ public class Movie {
     public Movie(JSONObject jsonObject) throws JSONException{
 
         voteAverage = jsonObject.getDouble("vote_average");
+        id = jsonObject.getInt("id");
         title = jsonObject.getString("title");
         posterPath = jsonObject.getString("poster_path");
         overview = jsonObject.getString("overview");
@@ -34,12 +36,13 @@ public class Movie {
         backdropPath = jsonObject.getString("backdrop_path");
     }
 
-    // required bt parcel library
+    // required by parcel library
     // empty constructor
     public Movie() {}
 
     // getter methods
     public double getVoteAverage() { return voteAverage; }
+    public int getId() { return id; }
     public String getTitle() {
         return title;
     }
