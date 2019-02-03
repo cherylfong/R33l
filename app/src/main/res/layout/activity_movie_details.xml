@@ -1,50 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MovieDetailsActivity"
-    android:layout_margin="16dp">
+    android:background="@android:color/black">
 
-    <TextView
-        android:id="@+id/movie_title_detail_textView"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/allerta"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        tools:text="@string/dummy_title" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="visible"
+        tools:context=".MovieDetailsActivity">
 
-    <com.google.android.youtube.player.YouTubePlayerView
-        android:id="@+id/movie_youtube_detail_player"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <!--Paffing is needed otherwise scrolview doesn't scroll all the way-->
 
-    </com.google.android.youtube.player.YouTubePlayerView>
+        <TextView
+            android:id="@+id/movie_title_detail_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/allerta"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:text="@string/dummy_title" />
 
-    <android.support.v7.widget.AppCompatRatingBar
-        android:id="@+id/movie_rating_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="10"
-        android:rating="1.0" />
+        <ProgressBar
+            android:id="@+id/replace_image_progressbar_detail_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/movie_releaseDate_detail_textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="monospace"
-        android:text="@string/dummy_date"
-        android:textSize="18sp" />
+        <com.google.android.youtube.player.YouTubePlayerView
+            android:id="@+id/movie_youtube_detail_player"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="5dp"
+            android:visibility="invisible"></com.google.android.youtube.player.YouTubePlayerView>f
 
-    <TextView
-        android:id="@+id/movie_overview_detail_textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto"
-        android:text="@string/dummy_overview"
-        android:textSize="20sp" />
+        <ImageView
+            android:id="@+id/no_trailer_detail_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
 
-</LinearLayout>
+        <android.support.v7.widget.AppCompatRatingBar
+            android:id="@+id/movie_rating_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="10"
+            android:rating="1.0"
+            android:theme="@style/RatingBar"/>
+
+        <TextView
+            android:id="@+id/movie_releaseDate_detail_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="monospace"
+            android:text="@string/dummy_date"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/movie_overview_detail_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="@string/dummy_overview"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</ScrollView>
