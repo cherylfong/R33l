@@ -5,9 +5,11 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 
+@Parcel
 public class Movie {
 
     private double voteAverage;
@@ -31,6 +33,10 @@ public class Movie {
         releaseDate = jsonObject.getString("release_date");
         backdropPath = jsonObject.getString("backdrop_path");
     }
+
+    // required bt parcel library
+    // empty constructor
+    public Movie() {}
 
     // getter methods
     public double getVoteAverage() { return voteAverage; }
