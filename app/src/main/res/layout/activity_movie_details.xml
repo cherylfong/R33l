@@ -17,6 +17,13 @@
         android:textStyle="bold"
         tools:text="@string/dummy_title" />
 
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/movie_youtube_detail_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.google.android.youtube.player.YouTubePlayerView>
+
     <android.support.v7.widget.AppCompatRatingBar
         android:id="@+id/movie_rating_detail"
         android:layout_width="wrap_content"
