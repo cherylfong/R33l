@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -39,6 +40,8 @@ import com.cherylfong.r33l.MovieDetailsActivity;
 import com.cherylfong.r33l.MoviesActivity;
 import com.cherylfong.r33l.Objects.Movie;
 import com.cherylfong.r33l.R;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -225,10 +228,14 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
                     Intent intent = new Intent(mContext, MovieDetailsActivity.class);
 
-                    intent.putExtra("title", m.getTitle());
-                    intent.putExtra("overview", m.getOverview());
-                    intent.putExtra("voteAvg", m.getVoteAverage());
-                    intent.putExtra("releaseDate", m.getReleaseDate());
+//                    Using Parcel library
+//
+//                    intent.putExtra("title", m.getTitle());
+//                    intent.putExtra("overview", m.getOverview());
+//                    intent.putExtra("voteAvg", m.getVoteAverage());
+//                    intent.putExtra("releaseDate", m.getReleaseDate());
+
+                    intent.putExtra("movieObject", Parcels.wrap(m));
 
                     mContext.startActivity(intent);
 
