@@ -5,21 +5,26 @@ R33l (as in "Reel") is an android app that allows users to browse movies from th
 
 ### Features 
 
-- [ ] Expose details of movie (ratings using RatingBar, popularity, and synopsis) in a separate activity.
-- [ ] Allow video posts to be played in full-screen using the YouTubePlayerView.
+- [X] Expose details of a movie (e.g. ratings using RatingBar, overview and release date) in a separate activity.
+- [X] Allow videos to be played in full-screen using the YouTubePlayerView.
 
 #### Bonus Features
 
-- [ ] Trailers for popular movies are played automatically when the movie is selected.
-  - [ ] When clicking on a popular movie (i.e. a movie voted for more than 5 stars) the video should be played immediately.
-  - [ ] Less popular videos rely on the detailed page should show an image preview that can initiate playing a YouTube video.
-- [ ] Add a play icon overlay to popular movies to indicate that the movie can be played.
-- [ ] Apply the popular ButterKnife annotation library to reduce view boilerplate.
-- [ ] Add a rounded corners for the images using the Glide transformations.
+- [X] Trailers for popular movies are played automatically when the movie is selected.
+  - [X] When clicking on a popular movie (i.e. a movie voted for more than 6.5 stars) the video plays immediately.
+  - [X] Less popular videos don't play automatically on the detailed page.
+- [X] Overlayed play icon on popular movies to indicate that the movie can be played.
+- [X] ButterKnife annotation library to reduce view boilerplate.
+- [X] Rounded corners for the images using the Glide transformations.
 
 ### Walkthough
 
-<img src="YOUR_GIF_URL_HERE" width=250><br>
+<br/>
+<img src="/img/week2_portait_demo.gif" >
+<br/>
+<br/>
+
+<img src="/img/week2_landscape_demo.gif">
 
 ## Week 1
 
