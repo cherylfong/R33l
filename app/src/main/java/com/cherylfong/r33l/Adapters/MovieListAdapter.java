@@ -200,6 +200,12 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
             Log.d(LOG_TAG, "GraphicURL: " + graphicURL);
 
+
+            // THIS IS PERHAPS THE MOST IMPORTANT LINE !!!!
+            // without fitCenter(), there will be extra space when applying just rounded corners!!!
+            //
+            requestOptions.fitCenter().transform(new RoundedCorners(30));
+
             // shows progress bar when movie image is loading
             Glide.with(mContext)
                     .load(graphicURL)
