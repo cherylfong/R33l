@@ -2,6 +2,7 @@ package com.cherylfong.r33l.Adapters;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,12 +10,14 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +26,8 @@ import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
@@ -39,6 +44,13 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     private static final String LOG_TAG = MovieListAdapter.class.getSimpleName();
 
+
+    private boolean votedHigh = false;
+    private final int HIGH_VOTE = 1; //
+    private final double VOTE_MIN= 6.5; // the minimum vote_average in order to be considered as a high vote
+
+    private View view;
+
     /**
      * Constructor using the context and the db cursor
      * @param context the calling context/activity
@@ -50,6 +62,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     }
 
     // inflates movie_list_item
+    // strange that this method is not called every time for each position!
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -57,13 +70,29 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         Log.d(LOG_TAG, "onCreateViewHolder called!");
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.movie_list_item, viewGroup, false );
+
+        switch (viewType){
+
+            case HIGH_VOTE:
+                Log.d(LOG_TAG, "VOTED HIGH");
+                view = inflater.inflate(R.layout.high_vote_movie_list_item, viewGroup, false );
+                break;
+
+            default:
+                view = inflater.inflate(R.layout.movie_list_item, viewGroup, false );
+                break;
+        }
+
         return new MovieViewHolder(view);
     }
 
     // take data at particular position and bind to view holder
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder movieViewHolder, int position) {
+
+        if(isVotedHigh(position)){
+            votedHigh = true;
+        }
 
         Log.d(LOG_TAG, "onBindViewHolder called: position " + position);
         Movie m = movieArrayList.get(position);
@@ -79,6 +108,26 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         return movieArrayList.size();
     }
 
+    //Returns constant value of the item at position for the purposes of view recycling.
+    @Override
+    public int getItemViewType(int position) {
+
+        if (movieArrayList.get(position).getVoteAverage() >= VOTE_MIN) {
+            return HIGH_VOTE;
+        } else {
+            return 0;
+        }
+    }
+
+    // check if a movie object is voted high
+    private boolean isVotedHigh( int position ){
+
+        if (movieArrayList.get(position).getVoteAverage() >= VOTE_MIN){
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * Inner class to hold the views needed to display a single item in the recycler-view
@@ -112,16 +161,34 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         // binds the values to the corresponding layout components
         public void bindValues(Movie m) {
 
+            progressBar.setVisibility(View.VISIBLE);
+            graphicIV.setVisibility(View.INVISIBLE);
+
+            RequestOptions requestOptions = new RequestOptions();
+//            requestOptions = requestOptions.transforms(new RoundedCorners(8));
 
             titleTV.setText(m.getTitle());
             releaseDateTV.setText(m.getReleaseDate());
-            overviewTV.setText(m.getOverview());
 
-            String graphicURL = m.getPosterPath();
+            // set overview when not voted high
+            if(!votedHigh){
 
-            if( mContext.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                Log.d(LOG_TAG, "setText overview");
+                overviewTV.setText(m.getOverview());
+            }
+
+            String graphicURL = m.getPosterPath("PORT");
+
+            if( mContext.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE || votedHigh){
+                // set back to false, to determine next movie rating
+                votedHigh = false;
+
+                Log.d(LOG_TAG, "value of votedHigh: " + votedHigh);
+
                 graphicURL = m.getBackdropPath();
             }
+
+            Log.d(LOG_TAG, "GraphicURL: " + graphicURL);
 
             // shows progress bar when movie image is loading
             Glide.with(mContext)
@@ -136,10 +203,14 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                         @Override
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                             progressBar.setVisibility(View.GONE);
+                            graphicIV.setVisibility(View.VISIBLE);
                             return false;
                         }
                     })
+                    .apply(requestOptions)
                     .into(graphicIV);
+
+
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.cherylfong.r33l.Objects;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,18 +10,21 @@ import java.util.ArrayList;
 
 public class Movie {
 
+    private double voteAverage;
     private String title;
     private String posterPath;
     private String overview;
     private String releaseDate;
     private String backdropPath;
 
-    private static final String POSTERSIZE = "w185";
-    private static final String BCKDROPSIZE = "w300";
+    private static final String POSTER_PORT = "w92";
+    private static final String POSTER_LAND = "w185"; // landscape ... perhaps use "w92" for portrait
+    private static final String BCKDROPSIZE = "original";
 
     // handled in onCreate of MainActivity
     public Movie(JSONObject jsonObject) throws JSONException{
 
+        voteAverage = jsonObject.getDouble("vote_average");
         title = jsonObject.getString("title");
         posterPath = jsonObject.getString("poster_path");
         overview = jsonObject.getString("overview");
@@ -28,12 +33,29 @@ public class Movie {
     }
 
     // getter methods
+    public double getVoteAverage() { return voteAverage; }
     public String getTitle() {
         return title;
     }
 
-    public String getPosterPath() {
-        return "https://image.tmdb.org/t/p/"+ POSTERSIZE + posterPath;
+    public String getPosterPath(String size) {
+
+        String graphicSize;
+
+        switch(size){
+            case "PORT":
+                graphicSize = POSTER_PORT;
+                break;
+            case "LAND":
+                graphicSize = POSTER_LAND;
+                break;
+            default:
+                graphicSize = "original";
+                break;
+
+        }
+
+        return "https://image.tmdb.org/t/p/"+ graphicSize + posterPath;
     }
 
     public String getOverview() {
