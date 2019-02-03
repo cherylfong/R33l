@@ -31,12 +31,12 @@ R33l (as in "Reel") is an android app that allows users to browse movies from th
    - [X] Portrait mode: shows movie title, poster image, release date and overview.
    - [X] Landscape mode: uses backdrop image instead of poster image in addition to the title and movie overview.
 
-- [ ] Display a nice default [placeholder graphic](https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library#advanced-usage) for each image during loading
-- [ ] Improved the user interface by experimenting with styling and coloring.
-- [ ] For popular movies (i.e. a movie voted for more than 5 stars), the full backdrop image is displayed. Otherwise, a poster image, the movie title, and overview is listed. Use Heterogenous RecyclerViews and use different ViewHolder layout files for popular movies and less popular ones.
+- [X] Display a nice default [placeholder graphic](https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library#advanced-usage) for each image during loading i.e. progress bar.
+- [X] Improved the user interface by experimenting with styling and coloring.
+- [X] For popular movies (i.e. a movie with Vote Average more than 6.5), the full backdrop image is displayed. Otherwise, a poster image, the movie title, and overview is listed. Use Heterogenous RecyclerViews and use different ViewHolder layout files for popular movies and less popular ones.
 
 ### Walkthough
-<img src="YOUR_GIF_URL_HERE" width=250><br>
+<img src="/img/week1_demo.gif" width=250><br>
 
 ### Open-source libraries used
 
