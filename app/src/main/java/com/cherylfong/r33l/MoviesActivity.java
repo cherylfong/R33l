@@ -24,7 +24,7 @@ public class MoviesActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MoviesActivity.class.getSimpleName();
 
-    private static final String API_KEY = "api_key=3cb75c31ee53a94adb2a217c345c85b6";
+    private final String MOVEDB_API_KEY = "api_key=3cb75c31ee53a94adb2a217c345c85b6";
     // private static final String API_KEY = "api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"; //test key
     private static final String NOW_PLAYING_REQ = "https://api.themoviedb.org/3/movie/now_playing?";
 
@@ -53,7 +53,7 @@ public class MoviesActivity extends AppCompatActivity {
 
         // to handle JSON objects
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(NOW_PLAYING_REQ+API_KEY, new JsonHttpResponseHandler(){
+        client.get(NOW_PLAYING_REQ+MOVEDB_API_KEY, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
