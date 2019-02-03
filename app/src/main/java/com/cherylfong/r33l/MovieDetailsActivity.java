@@ -11,6 +11,8 @@ import org.parceler.Parcels;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
+    private static final String GOOGLE_API_KEY = "AIzaSyBM53G9kyPrysY-5bL-ZDECi7nJOA9ezKA";
+
     Movie m;
 
     String title;
