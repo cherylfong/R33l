@@ -30,6 +30,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 import static com.loopj.android.http.AsyncHttpClient.LOG_TAG;
@@ -43,16 +45,30 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
     private static final String MOVIE_VIDEO_KEY_REQ = "https://api.themoviedb.org/3/movie/";
     Movie m;
 
-    TextView titleTV, overviewTV, releaseDateTV;
-    RatingBar ratingBar;
-    YouTubePlayerView youTubePlayerView;
-    ImageView noVideoIV;
-    ProgressBar progressBar;
+//    TextView titleTV, overviewTV, releaseDateTV;
+//    RatingBar ratingBar;
+//    YouTubePlayerView youTubePlayerView;
+//    ImageView noVideoIV;
+//    ProgressBar progressBar;
+
+    // Using Butterknife Library:
+
+    @BindView(R.id.movie_title_detail_textView) TextView titleTV;
+    @BindView(R.id.movie_overview_detail_textView) TextView overviewTV;
+    @BindView(R.id.movie_releaseDate_detail_textView) TextView releaseDateTV;
+    @BindView(R.id.movie_rating_detail) RatingBar ratingBar;
+    @BindView(R.id.movie_youtube_detail_player) YouTubePlayerView youTubePlayerView;
+    @BindView(R.id.no_trailer_detail_imageView) ImageView noVideoIV;
+    @BindView(R.id.replace_image_progressbar_detail_imageView) ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+
+        // required by lib
+        ButterKnife.bind(this);
 
 //        Using Parcel library instead!
 //
@@ -68,23 +84,23 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
         double voteAvg = m.getVoteAverage();
         String releaseDate = m.getReleaseDate();
 
-        titleTV = findViewById(R.id.movie_title_detail_textView);
+//        titleTV = findViewById(R.id.movie_title_detail_textView);
         titleTV.setText(title);
 
-        overviewTV = findViewById(R.id.movie_overview_detail_textView);
+//        overviewTV = findViewById(R.id.movie_overview_detail_textView);
         overviewTV.setText(overview);
 
-        ratingBar = findViewById(R.id.movie_rating_detail);
+//        ratingBar = findViewById(R.id.movie_rating_detail);
         ratingBar.setRating((float)voteAvg);
 
-        releaseDateTV = findViewById(R.id.movie_releaseDate_detail_textView);
+//        releaseDateTV = findViewById(R.id.movie_releaseDate_detail_textView);
         releaseDateTV.setText(releaseDate);
 
-        youTubePlayerView = findViewById(R.id.movie_youtube_detail_player);
+//        youTubePlayerView = findViewById(R.id.movie_youtube_detail_player);
 
-        progressBar = findViewById(R.id.replace_image_progressbar_detail_imageView);
+//        progressBar = findViewById(R.id.replace_image_progressbar_detail_imageView);
 
-        noVideoIV = findViewById(R.id.no_trailer_detail_imageView);
+//        noVideoIV = findViewById(R.id.no_trailer_detail_imageView);
 
         // to handle JSON objects
         AsyncHttpClient client = new AsyncHttpClient();

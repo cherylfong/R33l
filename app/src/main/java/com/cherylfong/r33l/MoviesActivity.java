@@ -18,6 +18,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class MoviesActivity extends AppCompatActivity {
@@ -32,16 +34,24 @@ public class MoviesActivity extends AppCompatActivity {
 
     ArrayList<Movie> moviesNowPlaying;
 
-    LinearLayout linearLayout;
     AnimationDrawable animationDrawable;
+
+    // cannot be local variable
+    @BindView(R.id.playing_now_movies_view) RecyclerView movieListRV;
+    // LinearLayout linearLayout;
+    @BindView(R.id.r33l_title_animate_layout) LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView movieListRV;
-        movieListRV = this.findViewById(R.id.playing_now_movies_view);
+        // required by library
+        ButterKnife.bind(this);
+
+//        RecyclerView movieListRV;
+//        movieListRV = this.findViewById(R.id.playing_now_movies_view);
+
         // vertical scrolling
         movieListRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
@@ -84,7 +94,7 @@ public class MoviesActivity extends AppCompatActivity {
         });
 
         // to animate title animation
-        linearLayout = findViewById(R.id.r33l_title_animate_layout);
+        // linearLayout = findViewById(R.id.r33l_title_animate_layout);
         animationDrawable = (AnimationDrawable) linearLayout.getBackground();
         animationDrawable.setEnterFadeDuration(5000);
         animationDrawable.setExitFadeDuration(5000);

@@ -45,6 +45,9 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder> {
 
     private ArrayList<Movie> movieArrayList;
@@ -142,12 +145,13 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
      */
     class MovieViewHolder extends RecyclerView.ViewHolder {
 
-        TextView titleTV;
-        TextView releaseDateTV;
+        @BindView(R.id.tile_textView) TextView titleTV;
+        @BindView(R.id.releaseDate_textView) TextView releaseDateTV;
+        // @BindView(R.id.overview_textView) TextView overviewTV;
         TextView overviewTV;
-        ImageView graphicIV;
-        ProgressBar progressBar;
-        RelativeLayout relativeLayout;
+        @BindView(R.id.movieGraphic_imageView) ImageView graphicIV;
+        @BindView(R.id.progressBar) ProgressBar progressBar;
+        @BindView(R.id.movie_list_item_container) RelativeLayout relativeLayout;
 
         /**
          * Constructor for ViewHolder. Within this constructor, get a reference to
@@ -158,14 +162,16 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
          */
         public MovieViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
 
+            // Using ButterKnife Library instead:
             // within movie_list_item.xml
-            titleTV = itemView.findViewById(R.id.tile_textView);
-            releaseDateTV = itemView.findViewById(R.id.releaseDate_textView);
+//            titleTV = itemView.findViewById(R.id.tile_textView);
+//            releaseDateTV = itemView.findViewById(R.id.releaseDate_textView);
             overviewTV = itemView.findViewById(R.id.overview_textView);
-            graphicIV = itemView.findViewById(R.id.movieGraphic_imageView);
-            progressBar = itemView.findViewById(R.id.progressBar);
-            relativeLayout = itemView.findViewById(R.id.movie_list_item_container);
+//            graphicIV = itemView.findViewById(R.id.movieGraphic_imageView);
+//            progressBar = itemView.findViewById(R.id.progressBar);
+//            relativeLayout = itemView.findViewById(R.id.movie_list_item_container);
         }
 
         // binds the values to the corresponding layout components
